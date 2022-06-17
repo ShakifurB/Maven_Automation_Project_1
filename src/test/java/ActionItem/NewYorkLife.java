@@ -63,7 +63,7 @@ public class NewYorkLife {
         //print the basics for whole life insurance
         String BasicsWholeLife = Reusable_Actions_Loggers.getTextByIndexAction(driver, "//*[@class='cmp-table-row__cell']", 2, logger, "Basics Whole Life");
         System.out.println("The basics of Whole Life Insurance is " + BasicsWholeLife);
-        //print the basis for term life insurance
+        //print the basics for term life insurance
         String BasicsTermLife = Reusable_Actions_Loggers.getTextByIndexAction(driver, "//*[@class='cmp-table-row__cell']", 1, logger, "Basics Term Life");
         System.out.println("The basics of Term Life Insurance is " + BasicsTermLife);
         //print the length of coverage for whole life insurance
@@ -171,15 +171,21 @@ public class NewYorkLife {
         Reusable_Actions_Loggers.sendKeysAction(driver, "//*[@name='clientAge']", "23", logger, "How old are you?");
         //enter age into "When do you want to retire?"
         Reusable_Actions_Loggers.sendKeysAction(driver, "//*[@name='clientRetAge']", "65", logger, "When do you want to retire?");
-        //clear field and enter age into "How long would you like retirement to be?"
-        Reusable_Actions_Loggers.sendKeysActionClear(driver, "//*[@name='retirementYears']", "30", logger, "How long would you like retirement to be?");
+
+
+        //clear the data that is pre-filled
+        Reusable_Actions_Loggers.clearField(driver, "//*[@id='range-value-textbox--1970979731_16']", logger, "Clear pre-filled");
+
+
+        //clear field and enter age into "How long would you like retirement to be?" CHANGE ME
+        Reusable_Actions_Loggers.sendKeysActionClear(driver, "//*[@id='range-value-textbox--1970979731_16']", "30", logger, "How long would you like retirement to be?");
         //click on "Next" button
         Reusable_Actions_Loggers.clickAction(driver, "//*[text()= 'Next']", logger, "Next");
         //enter amount into "How much do you currently have saved for retirement?"
         Reusable_Actions_Loggers.sendKeysAction(driver, "//*[@name='currentRetirementSavings']", "75000", logger, "currentRetirementSavings");
         //enter amount into "How much do you add to your retirement savings each year?"
         Reusable_Actions_Loggers.sendKeysAction(driver, "//*[@name='annualRetSavings']", "10000", logger, "annualRetSavings");
-        //clear field and enter amount into "What is your average rate of return?"
+        //clear field and enter amount into "What is your average rate of return?" CHANGE ME
         Reusable_Actions_Loggers.sendKeysActionClear(driver, "//*[@name='annualSavingsIncrease']", "5", logger, "annualSavingsIncrease");
         //click on "Next" button
         Reusable_Actions_Loggers.clickAction(driver, "//*[text()= 'Next']", logger, "Next");
@@ -187,7 +193,7 @@ public class NewYorkLife {
         Reusable_Actions_Loggers.sendKeysAction(driver, "//*[@name='clientIncome']", "120000", logger, "clientIncome");
         //enter amount into "What is your partner's current annual income?"
         Reusable_Actions_Loggers.sendKeysAction(driver, "//*[@name='spouseIncome']", "120000", logger, "spouseIncome");
-        //clear field and enter amount into "How much of your current income will you need in retirement??"
+        //clear field and enter amount into "How much of your current income will you need in retirement??" CHANGE ME
         Reusable_Actions_Loggers.sendKeysActionClear(driver, "//*[@name='retirementReplacement']", "60", logger, "annualSavingsIncrease");
         //click on "Results" button
         Reusable_Actions_Loggers.clickAction(driver, "//*[@class='cmp-calculator-container__submit-button nyl-button button--primary']", logger, "Results");

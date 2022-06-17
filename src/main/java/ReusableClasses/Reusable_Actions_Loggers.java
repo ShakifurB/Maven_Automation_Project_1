@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Reusable_Actions_Loggers {
 
-    //set a static timeout variable so it can cover all explicit for all methods
+    //set a static timeout variable, so it can cover all explicit for all methods
     public static int timeout = 60;
 
     //reusable function for webdriver as a return method
@@ -38,6 +38,8 @@ public class Reusable_Actions_Loggers {
         return driver;
     }//end of setDriver method
 
+
+
     //create a mouseHover method
     public static void mouseHover(WebDriver driver,String xpath, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -52,6 +54,8 @@ public class Reusable_Actions_Loggers {
         }//end of exception
     }//end of mouseHover method
 
+
+
     //create a mouseHoverByIndexAction method
     public static void mouseHoverByIndexAction(WebDriver driver,String xpath, int indexNumber, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -59,12 +63,14 @@ public class Reusable_Actions_Loggers {
         try{
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
             actions.moveToElement(element).perform();
-            logger.log(LogStatus.PASS, "Successfully hover on element " + elementName);
+            logger.log(LogStatus.PASS, "Successfully hover by index on element " + elementName);
         } catch (Exception e) {
             System.out.println("Unable to hover on element " + elementName + " " + e);
-            logger.log(LogStatus.FAIL, "Unable to hover on element " + elementName + " " + e);
+            logger.log(LogStatus.FAIL, "Unable to hover by index on element " + elementName + " " + e);
         }//end of exception
     }//end of mouseHoverByIndexAction method
+
+
 
     //create a click method
     public static void clickAction(WebDriver driver,String xpath, ExtentTest logger, String elementName){
@@ -79,6 +85,22 @@ public class Reusable_Actions_Loggers {
         }//end of exception
     }//end of clickAction
 
+    //create a clear field method
+    public static void clearField(WebDriver driver,String xpath, ExtentTest logger, String elementName){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        try{
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+            element.click();
+            element.clear();
+            logger.log(LogStatus.PASS, "Successfully clear pre-filled data on element " + elementName);
+        } catch (Exception e) {
+            System.out.println("Unable to clear pre-filled data on element " + elementName + " " + e);
+            logger.log(LogStatus.FAIL, "Unable to clear pre-filled on element " + elementName + " " + e);
+        }//end of exception
+    }//end of clearField
+
+
+
     //create a sendkeysAction method
     public static void sendKeysAction(WebDriver driver,String xpath, String userValue, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -92,7 +114,9 @@ public class Reusable_Actions_Loggers {
         }//end of exception
     }//end of sendKeysAction method
 
-    //create a sendKeysAction1 method
+
+
+    //create a sendKeysActionClear method
     public static void sendKeysActionClear(WebDriver driver,String xpath, String userValue, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         try{
@@ -104,6 +128,8 @@ public class Reusable_Actions_Loggers {
             logger.log(LogStatus.FAIL, "Unable to enter user value on element " + elementName + " " + e);
         }//end of exception
     }//end of sendKeysActionClear method
+
+
 
     //create a sendKeysActionByIndex method
     public static void sendKeysActionByIndex(WebDriver driver,String xpath, String userValue, int indexNumber, ExtentTest logger, String elementName){
@@ -118,6 +144,8 @@ public class Reusable_Actions_Loggers {
         }//end of exception
     }//end of sendKeysActionByIndex method
 
+
+
     //create a submit method
     public static void submitAction(WebDriver driver, String xpath, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -130,6 +158,8 @@ public class Reusable_Actions_Loggers {
             logger.log(LogStatus.FAIL, "Unable to submit on element " + elementName + " " + e);
         }//end of exception
     }//end of submitAction
+
+
 
     //create a getText method
     public static String getTextAction(WebDriver driver, String xpath, ExtentTest logger, String elementName){
@@ -146,19 +176,23 @@ public class Reusable_Actions_Loggers {
         return result;
     }//end of getTextAction method
 
+
+
     //create a click by index method
     public static void clickByIndexAction(WebDriver driver,String xpath, int indexNumber, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         try{
             WebElement element = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(xpath))).get(indexNumber);
             element.click();
-            logger.log(LogStatus.PASS, "Successfully capture text on element " + elementName);
+            logger.log(LogStatus.PASS, "Successfully click by index on element " + elementName);
         } catch (Exception e) {
             System.out.println("Unable to click on element " + elementName + " " + e);
-            logger.log(LogStatus.FAIL, "Unable to capture text on element " + elementName + " " + e);
+            logger.log(LogStatus.FAIL, "Unable to click by index on element " + elementName + " " + e);
         }//end of exception
     }//end of clickByIndexAction
 
+
+    //create a getTextByIndexAction method
     public static String getTextByIndexAction(WebDriver driver, String xpath, int indexNumber, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         String result = null;
@@ -172,6 +206,8 @@ public class Reusable_Actions_Loggers {
         }//end of exception
         return result;
     }//end of getTextByIndexAction
+
+
 
     //create a verifyTitle method
     public static void verifyTitle(WebDriver driver,String userInput, ExtentTest logger, String elementName){
@@ -189,6 +225,8 @@ public class Reusable_Actions_Loggers {
         }//end of exception
     }//end of verifyTitle method
 
+
+    //create a verifyStatusOfElement method
     public static void verifyStatusOfElement(WebDriver driver, String xpath, Boolean expectedStatus, ExtentTest logger, String ElementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
@@ -201,13 +239,17 @@ public class Reusable_Actions_Loggers {
         } catch (Exception e) {
             System.out.println("Unable to verify if element is selected as expected");
         }//end of exception
-    }
+    }//end of verifyStatusOfElement method
+
+
 
     //create a switchToTabByIndex
     public static void switchToTabByIndex(WebDriver driver, int userValue){
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(userValue));
     }//end of switchToTabByIndex method
+
+
 
     //create a selectByText method
     public static void selectByText (WebDriver driver, String xpath, String xPath, ExtentTest logger, String elementName){
@@ -222,6 +264,8 @@ public class Reusable_Actions_Loggers {
             logger.log(LogStatus.FAIL, "Unable to capture text on element " + elementName + " " + e);
         }//end of exception
     }//end of switchToTabByIndex
+
+
 
     //create a scroll into view method
     public static void scrollIntoView(WebDriver driver, String xpath, ExtentTest logger, String elementName) {
@@ -240,6 +284,8 @@ public class Reusable_Actions_Loggers {
         }//end of exception
     }//end of scrollIntoView
 
+
+    //create a Boolean checkCheckBox method
     public static Boolean checkCheckBox(WebDriver driver, String xpath, ExtentTest logger, String elementName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         Boolean result = null;
@@ -252,6 +298,8 @@ public class Reusable_Actions_Loggers {
         }//end of exception
         return result;
     }//end of checkCheckbox
+
+
 
     //create a scroll by pixels method
     public static void scrollByPixels(WebDriver driver, String x, String y, ExtentTest logger, String elementName) {
@@ -266,6 +314,8 @@ public class Reusable_Actions_Loggers {
             logger.log(LogStatus.PASS, "Unable to scroll into pixels " + elementName + " " + e);
         }//end of exception
     }//end of scrollByPixels
+
+
 
     //method to capture screenshot when logger fails
     public static void getScreenShot(WebDriver driver,String imageName,ExtentTest logger) {
